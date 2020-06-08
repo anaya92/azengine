@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+    <document name="azmap">
+        <attribute name="mapname"/>
+        <attribute name="author"/>
+        <collection name="colliderlist" id="2">
+            <collection name="collider">
+                <attribute name="tname"/>
+                <attribute name="type"/>
+                <attribute name="coords"/>
+                <text name="script"/>
+            </collection>
+        </collection>
+        <collection name="drawcall" id="3">
+            <collection name="layer">
+                <attribute name="level"/>
+                <collection name="call">
+                    <attribute name="x"/>
+                    <attribute name="y"/>
+                    <attribute name="coords"/> <!-- column, row, width, height-->
+                </collection>
+            </collection>
+        </collection>
+        <collection name="link" id="1">
+            <attribute name="src"/>
+            <attribute name="rel"/>
+        </collection>
+    </document>
+</schema>

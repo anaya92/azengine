@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<azmap mapname="debug map" author="Anaya Khadka">
+    <link src="scripts/other.lua" rel="startscript"/>
+    <link src="background.png" rel="spritesheet"/>
+    <colliderlist>
+        <collider type="normal" coords="-320 -240 640 96"/>
+        <collider type="normal" coords="-416 -144 96 385"/>
+        <collider type="normal" coords="0 32 128 16"/>
+        <collider type="normal" coords="256 256 96 96"/>
+        <collider type="normal" coords="400 256 96 96"/>
+        <collider tname="test" type="scripted" coords="0 0 32 32">
+            <script>
+                core.ToggleControls();
+                player.SetVelocity(0);
+                print(player.GetLocation());
+                core.ShowMessage("anaya", "hey azra!");
+                core.ToggleControls();
+            </script>
+        </collider>
+    </colliderlist>
+    <drawcall>
+        <layer level="bgtile">
+            <call x="" y="" coords=""/>
+        </layer>
+        <layer level="background">
+            
+        </layer>
+    </drawcall>
+</azmap>

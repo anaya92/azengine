@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AZEngine Scripting Documentation</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="prism.css" />
+</head>
+
+<body>
+    <script src="prism.js"></script>
+    <div id="top" class="block" style="text-align: center;">
+        <h1>AZEngine Scripting Documentation 1.0</h1>
+    </div>
+    <div class="block">
+        <h3>so, you've come across my humble little game engine. </h3><br />
+        AZEngine (AZE) is a 2d game engine i wrote during the coronavirus pandemic (epidemic? idk.) of 2020. lots of stuff happened, this
+        is probably the only good thing which came out of it.
+        AZE is written in pure C, no C++ whatsoever. it features an xml-based map loading system and lua scripting
+        features. it started as a little project for my gf.
+        and imma be honest here, its still a little project for my gf. so, grab something to eat or smth, and lets get
+        started.
+        <br /><br />
+        <div class="centered">...</div>
+    </div>
+    <div class="block">
+        <h3>table of contents</h3>
+        <ul>
+            <li><a href="#inspir">inspirations</a></li>
+            <li><a href="#lua">lua script docs</a></li>
+            <li><a href="#3rdparty">libraries i used</a></li>
+            <li><s>the actual game</s> (not ready)</li>
+        </ul>
+        <div class="centered">...</div>
+    </div>
+    <div class="block" id="inspir">
+        <h3>inspirations</h3>
+        i wanted to make a game for her for her bday. (hint: i didnt finish in time) i still showed it to her tho. i was
+        inspired by the old pokemon red/blue games
+        and the original legend of zelda game. so pretty much the guidelines were:<br />
+        <ul>
+            <li>top-down</li>
+            <li>16x16 sprite resolution (with the exception of the player)</li>
+            <li>and a limited color palette</li>
+        </ul>
+        i used the pokemon characters as a basis for what the player was going to look like. (search it up) <br /><br />
+        <div class="centered">
+            the final spritesheet:<br />
+            <img src="../resource/azra.png"></img><br />
+        </div>
+
+        i also took a lot of inspiration from the legend of zelda: breath of the wild, mainly the weather and other
+        environmental things (temperature, etc.)<br/>
+
+        <h3>oh! the color palette!</h3>
+        the color palette is blue-based thingie, the same palette used in this website (excluding the code sample containers).<br/>
+        <div class="centered">
+            the palette: <br/>
+            <img src="palette.png">
+        </div>
+
+        <div class="centered">...</div>
+    </div>
+    <div class="block" id="lua">
+        <h3>lua scripting!!!!!!! xd</h3>
+        the engine uses the lua scripting engine, a language well known for speed and for the use in other popular games
+        and platforms such as garry's mod and roblox.<br /><br />
+        the script api consists of 3 modules:
+        <ul>
+            <li>core</li>
+            <li>player</li>
+            <li>script</li>
+        </ul>
+        <b>
+            <h3 id="core">core</h3>
+        </b>
+        so this is like functions to do with a lot of the lower level stuff and interacting with the more rpg-like
+        elements of the game (showing message boxes, etc.) <br />
+        function list:
+        <pre><code class="language-lua">core {}
+
+function core.ToggleControls() -- self-explanatory...
+function core.ShowMessage(sender, msg) -- sends textbox
+function core.ToggleCursor() -- self explanatory...</code></pre><br />
+
+        <h3>player</h3>
+        this has to do with moving the player, setting health values, positions, etc. <br />
+        function list:
+        <pre><code class="language-lua">player {}
+
+function player.GetDirection() -- returns int 
+function player.SetDirection(direction) -- int parameter
+function player.SetVelocity(vel) -- int parameter
+function player.GetLocation() -- returns x, y
+function player.SetLocation(x, y) -- int, int parameters</code></pre>
+
+        <h3>script</h3>
+        the last and so far, the shortest module in the api. its for controlling the script process.<br />
+        function list:
+        <pre><code class="language-lua">script {}
+
+function script.Wait(seconds) -- int parameter</code></pre>
+        <div class="centered">...</div>
+    </div>
+
+    <div id="3rdparty" class="block">
+        <h3>3rd party libraries</h3>
+        the game used a lot of external libraries, actually. here they are:
+        <ul>
+            <li><a href="https://www.raylib.com/">raylib (main api)</a></li>
+            <li><a href="http://www.lua.org/">lua 5.3 (scripting)</a></li>
+            <li><a href="https://sourceforge.net/projects/pthreads4w/">pthread (threading/process handling)</a></li>
+            <li><a href="https://tibleiz.net/asm-xml/">asm-xml (high-speed assembly xml parser)</a></li>
+        </ul>
+        <div class="centered">...</div>
+    </div>
+</body>
+
+</html>
