@@ -1,7 +1,13 @@
-print("hewo");
+startup = {}
 
-player.SetLocation(240, 240);
+function startup.main()
+    print("hewo")
 
-print(player.GetLocation());
+    player.setLocation(240, 240)
+    
+    print(player.getLocation())
+    
+    core.toggleCursor()
+end
 
-core.ToggleCursor();
+startup.main()

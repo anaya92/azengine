@@ -55,7 +55,7 @@
         <h3>oh! the color palette!</h3>
         the color palette is blue-based thingie, the same palette used in this website (excluding the code sample containers).<br/>
         <div class="centered">
-            the palette: <br/>
+            the palette: <br/><br/>
             <img src="palette.png">
         </div>
 
@@ -77,29 +77,29 @@
         so this is like functions to do with a lot of the lower level stuff and interacting with the more rpg-like
         elements of the game (showing message boxes, etc.) <br />
         function list:
-        <pre><code class="language-lua">core {}
+        <pre><code class="language-lua">core = {}
 
-function core.ToggleControls() -- self-explanatory...
-function core.ShowMessage(sender, msg) -- sends textbox
-function core.ToggleCursor() -- self explanatory...</code></pre><br />
+function core.toggleControls() end -- self-explanatory...
+function core.showMessage(sender, msg) end -- sends textbox
+function core.toggleCursor() end -- self explanatory...</code></pre><br />
 
         <h3>player</h3>
         this has to do with moving the player, setting health values, positions, etc. <br />
         function list:
-        <pre><code class="language-lua">player {}
+        <pre><code class="language-lua">player = {}
 
-function player.GetDirection() -- returns int 
-function player.SetDirection(direction) -- int parameter
-function player.SetVelocity(vel) -- int parameter
-function player.GetLocation() -- returns x, y
-function player.SetLocation(x, y) -- int, int parameters</code></pre>
+function player.getDirection() end -- returns int 
+function player.setDirection(direction) end -- int parameter
+function player.setVelocity(vel) end -- int parameter
+function player.getLocation() end -- returns x, y
+function player.setLocation(x, y) end-- int, int parameters</code></pre>
 
         <h3>script</h3>
         the last and so far, the shortest module in the api. its for controlling the script process.<br />
         function list:
-        <pre><code class="language-lua">script {}
+        <pre><code class="language-lua">script = {}
 
-function script.Wait(seconds) -- int parameter</code></pre>
+function script.wait(seconds) end -- int parameter</code></pre>
         <div class="centered">...</div>
     </div>
 

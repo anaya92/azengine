@@ -3,23 +3,23 @@
 lua_State *AzLua;
 
 luaL_Reg const Player_Funcs[] = {
-    { "GetDirection", lAPI_GetPlayerDir },
-    { "SetDirection", lAPI_SetPlayerDir },
-    { "SetVelocity", lAPI_SetPlayerVelocity },
-    { "GetLocation", lAPI_GetPlayerLocation },
-    { "SetLocation", lAPI_SetPlayerLocation },    
+    { "getDirection", lAPI_GetPlayerDir },
+    { "setDirection", lAPI_SetPlayerDir },
+    { "setVelocity", lAPI_SetPlayerVelocity },
+    { "setLocation", lAPI_GetPlayerLocation },
+    { "setLocation", lAPI_SetPlayerLocation },    
     { NULL, NULL }    
 };
 
 luaL_Reg const Core_Funcs[] = {
-    { "ToggleControls", lAPI_ToggleControls },
-    { "ShowMessage", lAPI_ShowMsgBox },
-    { "ToggleCursor", lAPI_ToggleCursorVisibility },
+    { "toggleControls", lAPI_ToggleControls },
+    { "showMessage", lAPI_ShowMsgBox },
+    { "toggleCursor", lAPI_ToggleCursorVisibility },
     { NULL, NULL }    
 };
 
 luaL_Reg const Script_Funcs[] = {
-    { "Wait", lAPI_ScriptWait },
+    { "wait", lAPI_ScriptWait },
     { NULL, NULL }
 };
 
