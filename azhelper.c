@@ -57,6 +57,9 @@ void Initialize(AzGameState* state)
     state->paused = 0;
     state->controls_locked = 0;
     state->cursor_visible = 1;
+
+    state->temperature = 65;
+    state->weatherstate = WEATHER_CLEAR;
 }
 
 void Quit()

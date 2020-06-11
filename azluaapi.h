@@ -41,11 +41,13 @@ extern int lAPI_GetPlayerLocation(lua_State *L);
 
 // Script Funcs
 
-extern int lAPI_ScriptWait(lua_State *L);
+extern int lAPI_ScriptWait(lua_State *l);
 
 // azhelper func wrappers
 
 extern int lAPI_ShowMsgBox(lua_State *L);
+extern int lAPI_SetWeatherState(lua_State *l);
+extern int lAPI_SetTemp(lua_State *l);
 
 
 extern luaL_Reg const Player_Funcs[];

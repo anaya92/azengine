@@ -28,6 +28,13 @@ luaL_Reg const Script_Funcs[] = {
     { NULL, NULL }    
 };
  */
+
+static void wait(int seconds)
+{
+    int start = GetTime();
+    
+    while (GetTime() < (start + seconds)) continue; 
+}
  
 void InitLua()
 {
@@ -137,14 +144,34 @@ int lAPI_ShowMsgBox(lua_State *L)
     state.textbox.shouldDraw = 0;
 }
 
+int lAPI_SetWeatherState(lua_State *l)
+{
+    int wstate = lua_tointeger(l, 1);
+
+    state.weatherstate = wstate;
+}
+
+int lAPI_SetTemp(lua_State *l)
+{
+    int temp = lua_tointeger(l, 1);
+
+    if (temp > state.temperature)
+    {
+        while (state.temperature < temp)
+        {
+            state.temperature++;
+            wait(1);
+        }
+    }
+}
+
 // script funcs
 
-int lAPI_ScriptWait(lua_State *L)
+int lAPI_ScriptWait(lua_State *l)
 {
-    int seconds = lua_tonumber(L, 1);
-    int start = GetTime();
-    
-    while (GetTime() < (start + seconds)) continue; 
+    int seconds = lua_tointeger(l, 1);
+
+    wait(seconds);
     
     return 0;
 }

@@ -23,6 +23,11 @@ enum
     FACE_UP
 };
 
+enum 
+{
+    WEATHER_CLEAR
+};
+
 typedef struct animation_t
 {
     char entStr[16];
@@ -70,6 +75,9 @@ typedef struct GameState
     int paused;
     int controls_locked;
     int cursor_visible;
+
+    int temperature;
+    int weatherstate;
 } AzGameState;
 
 extern void DrawTextBox(TextBoxInfo info);
