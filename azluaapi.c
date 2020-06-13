@@ -23,6 +23,11 @@ luaL_Reg const Script_Funcs[] = {
     { NULL, NULL }
 };
 
+luaL_Reg const Map_Funcs[] = {
+    { "setTemp", lAPI_SetTemp },
+    { NULL, NULL }
+};
+
 /* luaL_Reg const Input_Funcs[] = {
     { "IsKeyDown"
     { NULL, NULL }    
@@ -43,6 +48,7 @@ void InitLua()
     AzLua_PushLib("core", Core_Funcs);
     AzLua_PushLib("player", Player_Funcs);
     AzLua_PushLib("script", Script_Funcs);
+    AzLua_PushLib("map", Map_Funcs);
     
     luaL_openlibs(AzLua);
 }
@@ -127,6 +133,8 @@ int lAPI_ToggleCursorVisibility(lua_State *L)
 
 int lAPI_ShowMsgBox(lua_State *L)
 {   
+    printf("entered");
+
     char* sender = lua_tostring(L, 1);
     char* content = lua_tostring(L, 2);
     

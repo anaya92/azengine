@@ -10,12 +10,12 @@
         <collider type="normal" coords="400 256 96 96"/>
         <collider tname="test" type="scripted" coords="0 0 32 32">
             <script>
-                print('e')
                 core.toggleControls()
                 player.setVelocity(0)
-                print(player.getLocation())
                 core.showMessage("anaya", "hey azra!")
                 core.toggleControls()
+
+                map.setTemp(50);
             </script>
         </collider>
     </colliderlist>
