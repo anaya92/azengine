@@ -34,9 +34,9 @@ luaL_Reg const Map_Funcs[] = {
 };
  */
 
-static void wait(int seconds)
+static void wait(float seconds)
 {
-    int start = GetTime();
+    float start = GetTime();
     
     while (GetTime() < (start + seconds)) continue; 
 }
@@ -133,8 +133,6 @@ int lAPI_ToggleCursorVisibility(lua_State *L)
 
 int lAPI_ShowMsgBox(lua_State *L)
 {   
-    printf("entered");
-
     char* sender = lua_tostring(L, 1);
     char* content = lua_tostring(L, 2);
     
@@ -161,23 +159,40 @@ int lAPI_SetWeatherState(lua_State *l)
 
 int lAPI_SetTemp(lua_State *l)
 {
+    printf("entered\n");
     int temp = lua_tointeger(l, 1);
+
+    printf("new temp: %i\n", temp);
 
     if (temp > state.temperature)
     {
         while (state.temperature < temp)
         {
             state.temperature++;
-            wait(1);
+            wait(0.5);
         }
     }
+    else if (temp < state.temperature) 
+    {
+        while (state.temperature > temp)
+        {
+            state.temperature--;
+            wait(0.5);
+        }
+    }
+    else
+    {
+        return 0;
+    }
+
+    return 0;
 }
 
 // script funcs
 
 int lAPI_ScriptWait(lua_State *l)
 {
-    int seconds = lua_tointeger(l, 1);
+    float seconds = lua_tointeger(l, 1);
 
     wait(seconds);
     

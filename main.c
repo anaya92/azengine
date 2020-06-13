@@ -54,7 +54,6 @@ int main(int argc, char* argv[])
     state.camera.zoom = 1.6f;
     
     int frameCounter = 0;
-    int frameCounter2 = 0;
     
     AzLua_DoFile(state.map.startScript);
     ResizeForUpdate();
@@ -124,58 +123,58 @@ _startdraw:
 
             ClearBackground(BLACK);
                 BeginTextureMode(RenderTarget);
-                        ClearBackground(CLS_COLOR);
-                        BeginMode2D(state.camera);
-                            //Background Layer
+                    ClearBackground(CLS_COLOR);
+                    BeginMode2D(state.camera);
+                        //Background Layer
 
-                            for (int i = -320; i < 640; i += 16)
+                        for (int i = -320; i < 640; i += 16)
+                        {
+                            for (int j = -144; j < 480; j += 16)
                             {
-                                for (int j = -144; j < 480; j += 16)
-                                {
-                                    Vector2 pos = { i , j };
-                                    
-                                    DrawTextureRec(background, getBackgroundTile(0, 0, 16, 16), pos, WHITE);
-                                }
-                            }
-
-                            for (int i = -320; i < -280; i += 16)
-                            {
-                                for (int j = -144; j < 480; j += 16)
-                                {
-                                    Vector2 pos = { i , j };
-                                    
-                                    DrawProp(background, waves.frame, pos, WHITE);                                    
-                                }
-                            }
-                            
-                            // Background Props  
-
-                            DrawProp(background, (Rectangle) { 32, 0, 16, 32}, (Vector2) {0, 0}, WHITE);
-                            DrawProp(background, (Rectangle) { 32, 0, 16, 32}, (Vector2) {16, 0}, WHITE);
-                            DrawProp(background, (Rectangle) { 32, 0, 16, 32}, (Vector2) {32, 0}, WHITE);
-                            
-                            DrawProp(background, (Rectangle) { 16, 0, 48, 32 }, (Vector2) { 128, 128 }, WHITE);
-                            DrawProp(background, (Rectangle) { 0, 16, 16, 16}, (Vector2) { 0, 96 }, WHITE);
-                            
-                            // Prop Layer
-                            DrawAzP(azra, &state.player);
-                            
-                            // Prop2 Layer
-                            
-                            // In-Camera Debugging Stuff
-                            if (showDebugInfo)
-                            {
-                                for (int i = 0; i < state.map.collisions.count; i++)
-                                {
-                                    DrawRectangleLinesEx(state.map.collisions.list[i], 1, BLUE);
-                                }
+                                Vector2 pos = { i , j };
                                 
-                                for (int i = 0; i < state.map.eventCollisions.count; i++)
-                                {
-                                    DrawRectangleLinesEx(state.map.eventCollisions.list[i].bounds, 1, MAGENTA);
-                                }
+                                DrawTextureRec(background, getBackgroundTile(0, 0, 16, 16), pos, WHITE);
                             }
-                    EndMode2D();
+                        }
+
+                        for (int i = -320; i < -280; i += 16)
+                        {
+                            for (int j = -144; j < 480; j += 16)
+                            {
+                                Vector2 pos = { i , j };
+                                
+                                DrawProp(background, waves.frame, pos, WHITE);                                    
+                            }
+                        }
+                        
+                        // Background Props  
+
+                        DrawProp(background, (Rectangle) { 32, 0, 16, 32}, (Vector2) {0, 0}, WHITE);
+                        DrawProp(background, (Rectangle) { 32, 0, 16, 32}, (Vector2) {16, 0}, WHITE);
+                        DrawProp(background, (Rectangle) { 32, 0, 16, 32}, (Vector2) {32, 0}, WHITE);
+                        
+                        DrawProp(background, (Rectangle) { 16, 0, 48, 32 }, (Vector2) { 128, 128 }, WHITE);
+                        DrawProp(background, (Rectangle) { 0, 16, 16, 16}, (Vector2) { 0, 96 }, WHITE);
+                        
+                        // Prop Layer
+                        DrawAzP(azra, &state.player);
+                        
+                        // Prop2 Layer
+                        
+                        // In-Camera Debugging Stuff
+                        if (showDebugInfo)
+                        {
+                            for (int i = 0; i < state.map.collisions.count; i++)
+                            {
+                                DrawRectangleLinesEx(state.map.collisions.list[i], 1, BLUE);
+                            }
+                            
+                            for (int i = 0; i < state.map.eventCollisions.count; i++)
+                            {
+                                DrawRectangleLinesEx(state.map.eventCollisions.list[i].bounds, 1, MAGENTA);
+                            }
+                        }
+                EndMode2D();
                 if (state.textbox.shouldDraw)
                 {
                     DrawTextBox(state.textbox);
@@ -191,10 +190,7 @@ _startdraw:
                         8, 1, BLACK);
                 }
                 
-                if (noclip)
-                {
-                    DrawText("Noclip: ON", 10, 470, 10, RED);
-                }                
+                DrawText(FormatText("Temp: %i", state.temperature), 10, 470, 10, WHITE);              
             EndTextureMode();
 
             DrawTexturePro(RenderTarget.texture, (Rectangle){ 0.0f, 0.0f, (float)RenderTarget.texture.width, (float)-RenderTarget.texture.height },
