@@ -7,7 +7,6 @@
 #include "controls.h"
 
 #define GLSL_VERSION 330
-
 #define CLS_COLOR (Color) { 67, 143, 168, 255 }
 
 int sw = 640;
