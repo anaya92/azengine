@@ -159,7 +159,6 @@ int lAPI_SetWeatherState(lua_State *l)
 
 int lAPI_SetTemp(lua_State *l)
 {
-    printf("entered\n");
     int temp = lua_tointeger(l, 1);
 
     printf("new temp: %i\n", temp);

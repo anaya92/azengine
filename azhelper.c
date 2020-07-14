@@ -9,8 +9,8 @@ Rectangle msgboxtextmargin = { 24, 38, 606, 75 };
 
 void DrawTextBox(TextBoxInfo info)
 {
-    DrawRectangleRounded(msgbox, 0.1f, 1, (Color) { 230, 138, 119 });
-    DrawRectangleRoundedLines(msgbox, 0.2f, 1, 2, RAYWHITE);
+    DrawRectangleRec(msgbox, (Color) { 230, 138, 119 });
+    DrawRectangleLinesEx(msgbox, 2, RAYWHITE);
     
     DrawTextEx(font1, info.sender, (Vector2) { msgbox.x + 6, msgbox.y + 6 }, 16, 1, WHITE);
     DrawTextRec(font1, info.content, msgboxtextmargin, 14, 1, 1, WHITE);
@@ -60,6 +60,59 @@ void Initialize(AzGameState* state)
 
     state->temperature = 65;
     state->weatherstate = WEATHER_CLEAR;
+
+    state->interactPrompt = 0;
+
+    state->noclip = 0;
+}
+
+void ShowSplash(Texture2D texture, RenderTexture2D surface, Color bgColor)
+{
+    for (unsigned char i = 0; i < 255; i++)
+    {
+        PollDebugControls();
+
+        BeginTextureMode(surface);
+            ClearBackground(bgColor);
+            DrawTexture(texture, 0, 0, (Color) { 255, 255, 255, i });
+        EndTextureMode();
+
+        BeginDrawing();
+            ClearBackground(BLACK);
+
+            DrawTexturePro(surface.texture, (Rectangle){ 0.0f, 0.0f, (float)surface.texture.width, (float)-surface.texture.height },
+                (Rectangle){ (GetScreenWidth() - ((float)sw))*0.5, 0,
+                (float)sw, (float)sh }, (Vector2){ 0, 0 }, 0.0f, WHITE);
+        EndDrawing();
+    }
+}
+
+void PollDebugControls()
+{
+    if (IsKeyDown(KEY_LEFT_ALT) && IsKeyPressed(KEY_ENTER))
+    {
+        if (!IsWindowFullscreen()) SetWindowSize(GetMonitorWidth(0), GetMonitorHeight(0));
+        else 
+        {
+            sw = 640;
+            sh = 480;
+            SetWindowSize(sw, sh);
+        }
+
+        ToggleFullscreen();
+        ResizeForUpdate();
+    }
+
+    if (IsKeyDown(KEY_LEFT_SHIFT) && IsKeyPressed(KEY_SEMICOLON)) state.noclip = !state.noclip;
+    if (IsKeyPressed(KEY_ESCAPE))
+    {
+        state.paused = !state.paused;
+    }
+    
+    if (IsKeyPressed(KEY_F11))
+    {
+        showDebugInfo = !showDebugInfo;
+    }
 }
 
 void Quit()

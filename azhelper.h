@@ -78,7 +78,14 @@ typedef struct GameState
 
     int temperature;
     int weatherstate;
+
+    int interactPrompt;
+
+    int noclip;
 } AzGameState;
+
+extern AzGameState state;
+extern int sw, sh;
 
 extern void DrawTextBox(TextBoxInfo info);
 
@@ -86,4 +93,21 @@ extern void DrawProp(Texture2D texture, Rectangle rect, Vector2 vec, Color color
 
 extern void Initialize(AzGameState* state);
 
+extern void ShowSplash(Texture2D texture, RenderTexture2D surface, Color bgColor);
+
+extern void PollDebugControls();
+
 extern void Quit();
+
+static Rectangle getBackgroundTile(int col, int row, int w, int h)
+{
+    return (Rectangle) { col * w, row * h, w, h };
+}
+
+static void ResizeForUpdate()
+{
+    if (IsWindowFullscreen()) sh = GetMonitorHeight(0);
+    else sh = GetScreenHeight();
+
+    sw = round((float)(((sh * 4) / 3) + 0.5));    
+}

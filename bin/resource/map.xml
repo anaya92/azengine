@@ -8,14 +8,11 @@
         <collider type="normal" coords="0 32 128 16"/>
         <collider type="normal" coords="256 256 96 96"/>
         <collider type="normal" coords="400 256 96 96"/>
-        <collider tname="test" type="scripted" coords="0 0 32 32">
+        <collider type="normal" coords="0 -16 16 16"/>
+        <collider tname="blink" face="up" type="interactable" coords="0 0 32 32">
             <script>
-                core.toggleControls()
-                player.setVelocity(0)
-                core.showMessage("anaya", "hey azra!")
-                core.toggleControls()
-
-                map.setTemp(50);
+                print("hello!")
+                core.showMessage("the sign", "hey ur not supposed to be here!~")
             </script>
         </collider>
     </colliderlist>

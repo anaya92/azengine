@@ -166,6 +166,33 @@ void DoEvCollisionsAzP(AzP* player, AzEventTrigger* EventCollisions, int eventCo
     }    
 }
 
+void DoInteractCollisionsAzP(AzP* player, AzInteractableCollider* InteractCollisions, int interactCount)
+{
+    Rectangle temp = { player->where.x, player->where.y, player->frame.width, player->frame.height };
+
+    for (int i = 0; i < interactCount; i++)
+    {
+        Rectangle inter = GetCollisionRec(temp, InteractCollisions[i].bounds);
+        
+        if (inter.width == player->frame.width && inter.height == player->frame.height && (InteractCollisions[i].req_face == player->direction))
+        {
+            DrawTextEx(font2, "press e to interact.", (Vector2) { 10, 10 }, 8, 1, BLACK);
+
+            state.interactPrompt = 1;
+
+            if (IsKeyPressed(KEY_E))
+            {
+                printf("Event Triggered: \'%s\'\n", InteractCollisions[i].name);
+                AzLua_DoString(InteractCollisions[i].script);
+            }
+        }
+        else
+        {
+            state.interactPrompt = 0;
+        }        
+    }    
+}
+
 void AzUpdateCamera(AzP* player)
 {
     state.camera.target = (Vector2) { player->where.x + 7, player->where.y + 9 };

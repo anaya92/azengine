@@ -9,6 +9,7 @@
                 <attribute name="type"/>
                 <attribute name="coords"/>
                 <text name="script"/>
+                <attribute name="face"/>
             </collection>
         </collection>
         <collection name="drawcall" id="3">

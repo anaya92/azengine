@@ -31,6 +31,23 @@ typedef struct evcollidelist_t
     AzEventTrigger list[64];
 } AzEventColliderList;
 
+typedef struct interact_collide_t
+{
+    char* name[16];
+
+    Rectangle bounds;
+    
+    int req_face;
+    char script[1024];
+
+} AzInteractableCollider;
+
+typedef struct interact_collidelist_t
+{
+    int count;
+    AzInteractableCollider list[64];
+} AzInteractableColliderList;
+
 typedef struct map_t
 {
     char name[32];
@@ -41,6 +58,7 @@ typedef struct map_t
 
     AzColliderList collisions;
     AzEventColliderList eventCollisions;
+    AzInteractableColliderList interactCollisions;
 } AzMap;
 
 AzMap AzLoadMap(char* filename);

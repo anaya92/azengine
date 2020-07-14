@@ -27,6 +27,7 @@ extern void UpdateAzPVel(AzP* player, AzControls controls);
 
 extern void DoCollisionsAzP(AzP* player, Rectangle* Collisions, int collisionsCount);
 extern void DoEvCollisionsAzP(AzP* player, AzEventTrigger* EventCollisions, int eventCount);
+extern void DoInteractCollisionsAzP(AzP* player, AzInteractableCollider* InteractCollisions, int interactCount);
 
 extern void AzUpdateCamera(AzP* player);
 

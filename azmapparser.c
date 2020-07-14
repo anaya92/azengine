@@ -20,6 +20,23 @@ static char *AttributeToString(AXAttribute *attr, int *size)
     return buffer;
 }
 
+static int FaceToInt(char* str)
+{
+    if (strcmp(str, "up") == 0)
+    {
+        return 3;
+    }
+    else if (strcmp(str, "down") == 0)
+    {
+        return 0;
+    }
+    else if (strcmp(str, "left") == 0)
+    {
+        return 1;
+    }
+    else return 2;
+}
+
 static void ResizeStringForAttribute(char *input, AXAttribute *attr)
 {
     size_t size = attr->begin - attr->limit;
@@ -138,6 +155,20 @@ AzMap AzLoadMap(char *filename)
 
                         map.eventCollisions.list[map.eventCollisions.count].hasBeenTriggered = 0;
                         map.eventCollisions.count++;
+                    }
+                    else if (strcmp(AttributeToString(&collider->attributes[1], &size), "interactable") == 0)
+                    {
+                        map.interactCollisions.list[map.interactCollisions.count].bounds = newRect;
+
+                        char *script = AttributeToString(&collider->attributes[3], &size);
+                        strcpy(map.interactCollisions.list[map.interactCollisions.count].script, script);
+                        strcpy(map.interactCollisions.list[map.interactCollisions.count].name, triggername);
+
+                        char* face_req = AttributeToString(&collider->attributes[4], &size);
+                        int face_reqInt = FaceToInt(face_req);
+                        
+                        map.interactCollisions.list[map.interactCollisions.count].req_face = face_reqInt;
+                        map.interactCollisions.count++;
                     }
                     else
                     {
